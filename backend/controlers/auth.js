@@ -1,12 +1,14 @@
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import createError from '../utils/createError.js';
 import 'dotenv/config.js';
 
-export const register = async (req, res) => {
+// REGISTER CONTOLLER
+export const register = async (req, res, next) => {
   // check for all fields
   if(!req.body.username || !req.body.fullName || !req.body.email || !req.body.password) {
-    return res.json(`username, fullName, email, and password fields required`);
+    return next(createError({ status: 400, message: 'Username, Full Name, Email, and Password Required'}));
   }
 
   try {
@@ -23,14 +25,15 @@ export const register = async (req, res) => {
     return res.status(201).json('New User Created');
   } catch(err) {
     console.log(err);
-    return res.json('server error');
+    return next(err);
   }
 }
 
-export const login = async (req, res) => {
+// LOGIN CONTROLLER
+export const login = async (req, res, next) => {
   // check for required fields
   if(!req.body.username || !req.body.password ) {
-    return res.json('required field username and password');
+    return next(createError({ status: 400, message: 'Username and Password are required.'}));
   }
   // find user in db
   try{
@@ -38,12 +41,12 @@ export const login = async (req, res) => {
       'username fullName email password'
     );
     if(!user) {
-      return res.status(404).json('user not found');
+      return next(createError({ status: 404, message: 'No User Found'}));
     }
     // check existing user with inputted password
     const isPasswordCorrect = await bcryptjs.compare(req.body.password, user.password); 
     if (!isPasswordCorrect) {
-      return res.json('password incorrect');
+      return next(createError({ status: 400, message: 'Password is Incorrect'}));
     }
     const payload = {
       id: user._id,
@@ -60,6 +63,26 @@ export const login = async (req, res) => {
     });
   } catch(err) {
     console.log(err);
-    return res.json('server error')
+    return next(err);
   }
 }
+
+// LOGOUT CONTROLLER
+export const logout = (req, res, next) => {
+  res.clearCookie('access_token');
+  return res.status(200).json({ message: 'Logout Success'});
+}
+
+export const isLoggedIn = (req, res, next) => {
+  const token = req.cookies.access_token;
+  if(!token) {
+    return res.json(false);
+  }
+  return jwt.verify(token, process.env.JWT_SECRET, (err) => {
+    if(err) {
+      return res.json(false);
+    } else {
+      return res.json(true);
+    }
+  });
+};
