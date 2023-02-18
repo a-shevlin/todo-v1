@@ -1,0 +1,45 @@
+$darkMode: true;
+
+@mixin darkMode {
+	@if($darkMode) {
+		@media(prefers-color-scheme: dark) {
+			@content
+		}
+	}
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+html {
+	padding: 0px;
+	margin: 0px;
+	font-size: 10px;
+	font-family: Inter, sans-serif;
+}
+
+body {
+	background: rgb(237, 236, 236);
+
+	@include darkMode {
+		background: rgb(9, 9, 9);
+	}
+}
+
+a {
+	text-decoration: none;
+}
+
+main {
+	width: 100vw;
+	height: 100vh;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+// background: rgb(255, 122, 88);
