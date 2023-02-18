@@ -7,6 +7,8 @@
 ---
 <br/>
 
+![](https://cdn.discordapp.com/attachments/835110557526130729/1076431711015030824/image.png)
+
 ## Description
 
 A task app that compiles everyday tasks and longer projects in a compact and easy to read format. Add on a friends list to keep track of what they might be up to and check out their public tasks to see if they may need help.
