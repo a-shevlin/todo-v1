@@ -15,7 +15,11 @@ module.exports = {
   },
   'plugins': [
     'react',
+    'react-hooks'
   ],
   'rules': {
+    'require-jsdoc': false,
+    'react-hooks/rules-of-hooks' : 'error',
+    'react-hooks/exhaustive-deps' : 'warn',
   },
 };
