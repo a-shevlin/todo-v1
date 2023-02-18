@@ -1,0 +1,50 @@
+$darkMode: true;
+
+@mixin darkMode {
+	@if($darkMode) {
+		@media(prefers-color-scheme: dark) {
+			@content
+		}
+	}
+}
+
+.form_container {
+	color: black;
+	padding: 2rem;
+
+	@include darkMode {
+		color: white;
+	}
+	.todo_guy {
+		position: absolute;
+		z-index: -3;
+		top: 0;
+		left: 0;
+		background-image: url(../assets/bg1.png);
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		height: 90%;
+		width: 100%;
+		margin: 0 auto;
+	}
+	h1 {
+		text-align: center;
+		font-size: 5rem;
+	}
+	a {
+		color: #ffffff;
+		font-size: 2.8rem;
+	}
+	.btn_group {
+		margin-top: 67vh;
+	}
+	.btn {
+		border: 2px hidden;
+		border-radius: 3rem;
+		background-color: rgb(255, 122, 88);
+		padding: 1.2rem;
+		text-align: center;
+		margin-top: 1rem;
+	}
+}
