@@ -1,0 +1,107 @@
+$darkMode: true;
+
+@mixin darkMode {
+	@if($darkMode) {
+		@media(prefers-color-scheme: dark) {
+			@content
+		}
+	}
+}
+
+.register,
+.login {
+	max-width: 386px;
+	@media screen and (max-width: 768px) {
+    width: 85%;
+  }
+	color: rgb(0, 0, 0);
+	margin: 0 auto;
+
+	@include darkMode {
+		color: #ffffff;
+	}
+
+	.g_todo{
+		margin-top: 15%;
+	}
+
+	.tagline { 
+		margin-top: 45%;
+	}
+}
+.bubble{
+	background-color: rgb(255, 122, 88);
+	height: fit-content;
+	padding: 1rem;
+	padding-top: 2rem;
+	padding-bottom: 2rem;
+	border-radius: 2rem;
+	flex: 1;
+	margin: 0 auto;
+	margin-top: 5%;
+}
+.g_todo{
+	font-size: 1.8rem;
+	margin-top: 10%;
+	color: rgba(0, 0, 0, 0.664);
+	
+	@include darkMode {
+		color: rgba(255, 255, 255, 0.479);
+	}
+}
+.title {
+	font-size: 3rem;
+}
+.tagline {
+	font-size: 2.5rem;
+	margin-top: 10%;
+}
+.authForm {
+	margin-top: 2rem;
+	width: 100%;
+	label {
+		width: 100%;
+		font-size: 2rem;
+	}
+	input {
+		font-size: 2rem;
+		width: 100%;
+		margin-bottom: 0.5rem;
+		margin-top: 0.5rem;
+		padding: 1rem;
+		border-radius: 1.7rem;
+		border: none;
+		background-color: rgb(223, 221, 221);
+
+		@include darkMode {
+			background-color: rgb(30, 30, 30);
+			color: white;
+		}
+	}
+	.cInput {
+		margin-bottom: 0rem;
+		margin-top: 0.5rem;
+	}
+	.err {
+		padding-top: 0.25rem;
+		color: rgb(187, 40, 40);
+		font-size: 1.8rem;
+		margin-left: 1rem;
+		font-weight: 600;
+		@include darkMode {
+			color: rgb(255, 255, 255);
+		}
+	}
+	button {
+		width: 100%;
+		border-style: hidden;
+		background: #4A81EE;
+		color: white;
+		font-weight: 600;
+		font-size: 2rem;
+		border-radius: 3rem;
+		padding: 1rem 2rem;
+		margin-top: 3rem;
+		cursor: pointer;
+	}
+}
