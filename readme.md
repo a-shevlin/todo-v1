@@ -4,6 +4,10 @@
   <p>Built to give friends a way to check in on your day.</p>
 </div>
 
+<p align="center">
+  <img src="https://cdn.discordapp.com/attachments/835110557526130729/1076431711015030824/image.png" />
+</p>
+
 ---
 <br/>
 
