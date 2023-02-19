@@ -43,8 +43,17 @@ $darkMode: true;
 		border: 2px hidden;
 		border-radius: 3rem;
 		background-color: rgb(255, 122, 88);
+		transition: background-color 0.3s;
 		padding: 1.2rem;
 		text-align: center;
 		margin-top: 1rem;
+	
+		&:hover {
+			 background-color: rgb(200, 106, 82);
+		}
+
+		&:active {
+			 background-color: rgb(146, 84, 69);
+		}
 	}
 }
