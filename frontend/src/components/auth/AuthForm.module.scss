@@ -20,30 +20,63 @@ $darkMode: true;
 	@include darkMode {
 		color: #ffffff;
 	}
-
 	.g_todo{
 		margin-top: 15%;
 	}
 
 	.tagline { 
-		margin-top: 45%;
+		margin-top: 10%;
+		font-size: 2.5rem;
 	}
 }
+.nav {
+	margin-top: 15%;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+
+	.svg {
+		width: 4.1rem;
+		transition: stroke 0.3s;
+		stroke: #d6d6d6;
+
+		&:hover {
+			stroke: rgb(255, 122, 88);
+		}
+
+		&:active {
+			stroke: rgb(239, 115, 84);
+		}
+	}
+}
+
+.nav_child {
+	width: fit-content;
+}
+
+.nav_route {
+	font-size: 1.7rem;
+	margin-top: 1rem;
+	text-align: center;
+	border-radius: 36%;
+}
+
 .bubble{
 	background-color: rgb(255, 122, 88);
 	height: fit-content;
-	padding: 1rem;
+	padding: 2rem;
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	border-radius: 2rem;
 	flex: 1;
 	margin: 0 auto;
-	margin-top: 5%;
+	margin-top: 8%;
 }
+
 .g_todo{
 	font-size: 1.8rem;
 	margin-top: 10%;
-	color: rgba(0, 0, 0, 0.664);
+	color: #000000a9;
 	
 	@include darkMode {
 		color: rgba(255, 255, 255, 0.479);
@@ -51,10 +84,6 @@ $darkMode: true;
 }
 .title {
 	font-size: 3rem;
-}
-.tagline {
-	font-size: 2.5rem;
-	margin-top: 10%;
 }
 .authForm {
 	margin-top: 2rem;
@@ -89,7 +118,7 @@ $darkMode: true;
 		margin-left: 1rem;
 		font-weight: 600;
 		@include darkMode {
-			color: rgb(255, 255, 255);
+			color: rgb(255, 244, 213);
 		}
 	}
 	button {
@@ -102,6 +131,17 @@ $darkMode: true;
 		border-radius: 3rem;
 		padding: 1rem 2rem;
 		margin-top: 3rem;
+		transition: background-color 0.3s;
 		cursor: pointer;
+
+		&:hover {
+			background: #3056a0;
+		}
+
+		&:active {
+			background: #233862;
+		}
 	}
+
 }
+
