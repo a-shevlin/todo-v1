@@ -1,9 +1,16 @@
 import React from 'react';
 import classes from './Layout.module.scss';
+import { motion } from 'framer-motion';
 
 function Layout({ children }) {
   return (
-    <main className={classes.container}>{children}</main>
+    <motion.main 
+      className={classes.container}
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}>
+        {children}
+    </motion.main>
   )
 }
 
