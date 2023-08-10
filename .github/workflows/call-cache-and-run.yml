@@ -1,4 +1,5 @@
-name: Call Node Cache and Run Setup by ${{ github.actor }}
+name: Run Node Setup
+run-name: Run Node Setup by ${{ github.actor }} with ${{ github.action}}
 on: workflow_dispatch
 
 jobs: 
