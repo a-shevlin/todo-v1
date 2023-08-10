@@ -4,7 +4,7 @@ run-name: Install React Dependencies (nodejs package-lock.json) with caching.
 on: 
   workflow_dispatch:
     inputs:
-      namable-input:
+      sub-folder:
         description: 'descriptor for what is passed down from calling workfrlow'
         default: './frontend'
         type: string
@@ -34,8 +34,8 @@ jobs:
         id: node-cache
         uses: actions/cache@v3
         with: 
-          path: ./frontend/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('./frontend/package-lock.json') }}
+          path: ${{ inputs.sub-folder }}/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('${{ inputs.sub-folder }}/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-modules-
           
@@ -49,6 +49,6 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: |
-            ./frontend/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('./frontend/package-lock.json') }}
+            ${{ inputs.sub-folder }}/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('${{ inputs.sub-folder }}/package-lock.json') }}
       
