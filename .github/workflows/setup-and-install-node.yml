@@ -1,0 +1,53 @@
+name: Node Setup
+run-name: Install React Dependencies (nodejs package-lock.json) with caching.
+
+on: 
+  workflow_dispatch:
+    inputs:
+      namable-input:
+        description: 'descriptor for what is passed down from calling workfrlow'
+        default: './frontend'
+        type: string
+          
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          node-version: 18.x
+        
+      - name: Get Node cache directory
+        id: node-cache-dir-path
+        shell: bash
+        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+        
+      - name: Print ${{steps.node-cache-dir-path.outputs.dir}}
+        run: echo "This is a test ;)"
+
+      - name: Cache Node Package
+        id: node-cache
+        uses: actions/cache@v3
+        with: 
+          path: ./node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('./frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-modules-
+          
+      - name: Install dependencies if necessary
+        if: steps.node-cache.outputs.cache-hit != 'true'
+        run: npm ci
+        
+      - name: Save Primes
+        id: cache-primes-save
+        uses: actions/cache/save@v3
+        with:
+          path: |
+            ./node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('./frontend/package-lock.json') }}
+      
