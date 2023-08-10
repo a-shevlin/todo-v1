@@ -1,0 +1,40 @@
+name: Call Node Cache and Run Setup by {{ github.actor }}
+on: workflow_dispatch
+
+jobs: 
+  initialize-project:
+    uses: a-shevlin/todo-v1/.github/workflows/setup-and-install-node.yml@main
+      with:
+        sub-folder: './frontend'
+    
+  pull-cache-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        
+      - name: Check files in github actions
+        run: |
+          ls ${{ github.workspace }}
+        
+      - name: Restore cached package
+        id: cached-node-restore
+        uses: actions/cache/restore@v3
+        with: 
+          path: |
+            .{{}}/node_modules
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock.json') }}
+          
+      - name: Check for vite in modules cache
+        run: ls node_modules/.bin | grep vite
+        
+      - name: Build Dist
+        run: npm run build
+
+
+
+
+#      - name: Create .env File
+#        run: |
+#          touch .env
+#          echo VITE_APP_MAPBOX_TOKEN=${{ secrets.VITE_APP_MAPBOX_TOKEN }} >> .env
