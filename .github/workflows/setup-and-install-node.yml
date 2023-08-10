@@ -1,8 +1,8 @@
 name: Node Setup
-run-name: Install React Dependencies (nodejs package-lock.json) with caching.
+run-name: Install NodeJS Modules for ${{ inputs.sub-folder }} called by ${{ github.actor }}.
 
 on: 
-  workflow_dispatch:
+  workflow_call:
     inputs:
       sub-folder:
         description: 'descriptor for what is passed down from calling workfrlow'
@@ -41,8 +41,9 @@ jobs:
           
       - name: Install dependencies if necessary
         if: steps.node-cache.outputs.cache-hit != 'true'
-        working-directory: frontend
-        run: npm ci
+        run: |
+          cd ${{ inputs.sub-folder }}
+          npm ci
         
       - name: Save Cache
         id: cache-primes-save
