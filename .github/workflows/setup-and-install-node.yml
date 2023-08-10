@@ -10,7 +10,7 @@ on:
         type: string
           
 jobs:
-  build:
+  check-cache:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,12 +44,3 @@ jobs:
         run: |
           cd ${{ inputs.sub-folder }}
           npm ci
-        
-      - name: Save Cache
-        id: cache-primes-save
-        uses: actions/cache/save@v3
-        with:
-          path: |
-            ${{ inputs.sub-folder }}/node_modules
-          key: ${{ runner.os }}-modules-${{ hashFiles('${{ inputs.sub-folder }}/package-lock.json') }}
-      
