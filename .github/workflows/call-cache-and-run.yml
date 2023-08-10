@@ -1,5 +1,5 @@
 name: Run Node Setup
-run-name: Run Node Setup by ${{ github.actor }} with ${{ github.action}}
+run-name: Run Node Setup by ${{ github.actor }} in ${{ inputs.sub-folder }} with ${{ github.event_name }}
 on: 
   workflow_dispatch:
     inputs:
