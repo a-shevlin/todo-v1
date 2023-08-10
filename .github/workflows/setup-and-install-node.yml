@@ -34,7 +34,7 @@ jobs:
         id: node-cache
         uses: actions/cache@v3
         with: 
-          path: ./node_modules
+          path: ./frontend/node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('./frontend/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-modules-
@@ -49,6 +49,6 @@ jobs:
         uses: actions/cache/save@v3
         with:
           path: |
-            ./node_modules
+            ./frontend/node_modules
           key: ${{ runner.os }}-modules-${{ hashFiles('./frontend/package-lock.json') }}
       
